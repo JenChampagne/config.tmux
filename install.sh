@@ -9,7 +9,7 @@ is_app_installed() {
 }
 
 REPODIR="$(cd "$(dirname "$0")"; pwd -P)"
-cd "$REPODIR";
+cd "$REPODIR"
 
 if ! is_app_installed tmux; then
   printf "WARNING: \"tmux\" command is not found. \
@@ -21,6 +21,14 @@ if [ ! -e "$HOME/.config/tmux/plugins/tpm" ]; then
   printf "WARNING: Cannot found TPM (Tmux Plugin Manager) \
  at default location: \$HOME/.config/tmux/plugins/tpm\n"
   git submodule update --init plugins/tpm
+fi
+
+read -p "Update to latest commit of TPM? " confirm
+if [[ "$confirm" == [yY] || "$config" == [yY][eE][sS] ]]; then
+    echo "Pulling latest commit from GitHub."
+    cd plugins/tpm
+    git checkout -d origin/master
+    cd ../..
 fi
 
 if [ -e "$HOME/.tmux.conf" ]; then
