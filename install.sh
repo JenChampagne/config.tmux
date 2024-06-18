@@ -17,7 +17,7 @@ Install it first\n"
   exit 1
 fi
 
-if [ ! -e "$HOME/.config/tmux/plugins/tpm" ]; then
+if [ ! -e "$HOME/.config/tmux/plugins/tpm/bin" ]; then
   printf "WARNING: Cannot found TPM (Tmux Plugin Manager) \
  at default location: \$HOME/.config/tmux/plugins/tpm\n"
   git submodule update --init plugins/tpm
